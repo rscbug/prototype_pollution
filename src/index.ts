@@ -1,6 +1,6 @@
 import express from 'express'
 const bodyParser = require('body-parser')
-const _ = require('lodash');
+
 import { setByPath } from '@clickbar/dot-diver';
 
 const app = express();
