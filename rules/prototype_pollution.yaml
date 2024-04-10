@@ -1,0 +1,24 @@
+rules:
+  - id: clickbar_prototype_pollution_SCA
+    message: setPath - vulnerable function of @clickbar module. Supply-chain analysis.
+    metadata:
+      technology:
+        - express
+    languages:
+      - javascript
+      - typescript
+    r2c-internal-project-depends-on:
+      depends-on-either:
+      - namespace: npm
+        package: "@clickbar/dot-diver"
+        version: < 1.0.2
+    severity: ERROR
+    patterns:
+      - pattern-inside: |
+          import {..., $FUNC, ...} from '@clickbar/dot-diver'
+          ...
+      - patterns:
+        - pattern: $FUNC(...)
+        - metavariable-pattern:
+            metavariable: $FUNC
+            pattern: setByPath
